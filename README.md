@@ -1,4 +1,4 @@
-short review:
+short review: 
 Here is a summary of the technical workflow you executed to connect your custom domain to your GitHub Pages repository:
 
 Buy domain ehsanmohajer.fi from Domain hotelli with account .fi gmail.
