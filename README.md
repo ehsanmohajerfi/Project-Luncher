@@ -1,33 +1,18 @@
-short review: 
-Here is a summary of the technical workflow you executed to connect your custom domain to your GitHub Pages repository:
 
-Buy domain ehsanmohajer.fi from Domain hotelli with account .fi gmail.
-then trasnfer the dns with couldflare to git.
----
+# Ehsan Mohajer — Personal Launchpad
 
-### 1. The Domainhotelli Handshake (Nameserver Delegation)
+A responsive, static launch page for `ehsanmohajer.fi`, linking visitors to Sani Studio and Ehsan's portfolio. It runs without a build step and is ready for GitHub Pages.
 
-Instead of using Domainhotelli's internal DNS zone editor, you configured your domain to delegate its authority to **Cloudflare**.
+## Local preview
 
-* **Action taken:** You entered Cloudflare’s designated nameservers (`mina.ns.cloudflare.com` and `uriah.ns.cloudflare.com`) into your Domainhotelli panel.
-* **Why it matters:** This passed the baton to Cloudflare, making it the active manager for all your web traffic records and providing you with faster propagation, CDN caching, and security layers.
+Open `index.html` directly, or run a small local server:
 
-### 2. The Cloudflare DNS Configuration
+```powershell
+python -m http.server 8000
+```
 
-Once Cloudflare took over the domain management, you accurately pointed your web addresses to GitHub's infrastructure.
+Then visit `http://localhost:8000`.
 
-* **Action taken:** * You added **four separate `A` records** for the apex/root domain (`ehsanmohajer.fi`) mapping to GitHub's global edge server IPs (`185.199.108.153` through `.111.153`).
-* You pointed the **`www` CNAME record** directly to your GitHub user domain (`ehsanmohajerfi.github.io`).
-* You kept these records set strictly to **DNS Only (Grey Cloud)**.
+## Updating links
 
-
-* **Why it matters:** Setting them to "DNS Only" bypassed Cloudflare's proxy layer temporarily, ensuring GitHub’s automated systems could trace the records back to you unhindered and issue a security certificate smoothly.
-
-### 3. The GitHub Pages Alignment & SSL Activation
-
-Finally, you bound the domain to your source code repository (`Personal-launchpad`) and handled the security handshake.
-
-* **Action taken:** You explicitly assigned `ehsanmohajer.fi` inside the Pages settings, triggered a manual re-verification check, and enabled **Enforce HTTPS**.
-* **Why it matters:** This told GitHub's servers to serve your specific repository assets whenever a request hits their IPs from your domain. Forcing the re-check cleared old cached connection states and resolved the temporary HSTS security errors, authorizing a brand new, fully valid Let's Encrypt SSL certificate.
-
-Your minimalist personal launchpad is now cleanly routed and fully secure!
+Public destinations and the discreet administrator shortcut are in `index.html`. Search for `vercel.app` to update them.
