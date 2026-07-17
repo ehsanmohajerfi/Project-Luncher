@@ -1,461 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Ehsan Mohajer — Full-Stack Engineer</title>
-<meta name="description" content="Full-stack engineer building web products, automation and AI-driven systems.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0c0e13;
-    --bg-soft:#12151c;
-    --panel:#181c25;
-    --ink:#eef0f4;
-    --muted:#8b90a3;
-    --line:rgba(238,240,244,0.09);
-    --amber:#f2a340;
-    --violet:#7c6cf6;
-    --amber-dim:rgba(242,163,64,0.14);
-    --violet-dim:rgba(124,108,246,0.14);
-    --font-display:'Space Grotesk', sans-serif;
-    --font-body:'Inter', sans-serif;
-    --font-mono:'JetBrains Mono', monospace;
-  }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg); color:var(--ink); font-family:var(--font-body);
-    -webkit-font-smoothing:antialiased; overflow-x:hidden;
-  }
-  a{color:inherit;}
-  ::selection{background:var(--amber); color:#0c0e13;}
-
-  /* ---------- nav ---------- */
-  nav{
-    position:fixed; top:0; left:0; right:0; z-index:50;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:22px clamp(20px,5vw,56px);
-    padding-top:max(22px, env(safe-area-inset-top));
-    padding-left:max(clamp(20px,5vw,56px), env(safe-area-inset-left));
-    padding-right:max(clamp(20px,5vw,56px), env(safe-area-inset-right));
-    background:linear-gradient(to bottom, rgba(12,14,19,0.92), rgba(12,14,19,0));
-  }
-  .brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:15px; letter-spacing:-0.01em; white-space:nowrap;}
-  .brand-mark{
-    width:30px; height:30px; border-radius:8px; flex-shrink:0;
-    background:conic-gradient(from 140deg, var(--amber), var(--violet), var(--amber));
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-mono); font-size:11px; font-weight:500; color:#0c0e13;
-  }
-  .nav-links{display:flex; align-items:center; gap:34px; list-style:none;}
-  .nav-links a{ font-size:13px; color:var(--muted); text-decoration:none; letter-spacing:0.01em; transition:color 0.2s;}
-  .nav-links a:hover{color:var(--ink);}
-  .nav-cta{
-    font-family:var(--font-mono); font-size:12px; padding:9px 16px; border-radius:8px;
-    border:1px solid var(--line); text-decoration:none; color:var(--ink); white-space:nowrap; flex-shrink:0;
-    transition:border-color 0.2s, background 0.2s;
-  }
-  .nav-cta:hover{ border-color:var(--amber); background:var(--amber-dim); }
-  @media (max-width:760px){ .nav-links{display:none;} }
-  @media (max-width:400px){
-    .brand-text{ display:none; }
-    .nav-cta{ font-size:10.5px; padding:8px 12px; }
-  }
-
-  /* ---------- hero ---------- */
-  .hero{
-    position:relative; min-height:100vh; min-height:100svh; display:flex; align-items:center;
-    padding:120px clamp(20px,5vw,56px) 80px;
-    border-bottom:1px solid var(--line);
-    overflow:hidden;
-  }
-  @media (max-width:600px){
-    .hero{ padding:110px 20px 60px; }
-    .hero-sub{ max-width:100%; }
-  }
-  @media (max-height:700px) and (max-width:600px){
-    .hero{ min-height:auto; padding:100px 20px 56px; }
-  }
-  #net{ position:absolute; inset:0; width:100%; height:100%; opacity:0.85; }
-  .hero-inner{ position:relative; z-index:2; max-width:640px; }
-  .eyebrow{
-    font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
-    color:var(--amber); display:flex; align-items:center; gap:10px; margin-bottom:22px;
-    opacity:0; transform:translateY(8px); animation:rise 0.7s 0.1s ease forwards;
-  }
-  .eyebrow::before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--amber); box-shadow:0 0 0 4px var(--amber-dim); }
-  h1.headline{
-    font-family:var(--font-display); font-weight:700; letter-spacing:-0.03em;
-    font-size:clamp(38px,5.6vw,64px); line-height:1.08; margin-bottom:22px;
-    opacity:0; transform:translateY(10px); animation:rise 0.7s 0.22s ease forwards;
-  }
-  h1.headline .accent{ color:var(--amber); }
-  h1.headline .accent2{ color:var(--violet); }
-  .hero-sub{
-    font-size:16.5px; line-height:1.7; color:var(--muted); max-width:480px; margin-bottom:34px;
-    opacity:0; transform:translateY(10px); animation:rise 0.7s 0.34s ease forwards;
-  }
-  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; opacity:0; transform:translateY(10px); animation:rise 0.7s 0.46s ease forwards; }
-  .btn{
-    font-family:var(--font-mono); font-size:13px; padding:13px 22px; border-radius:9px;
-    text-decoration:none; display:inline-flex; align-items:center; gap:8px;
-    transition:transform 0.2s, box-shadow 0.2s, background 0.2s;
-  }
-  .btn-solid{ background:var(--amber); color:#0c0e13; font-weight:500; }
-  .btn-solid:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(242,163,64,0.25); }
-  .btn-ghost{ border:1px solid var(--line); color:var(--ink); }
-  .btn-ghost:hover{ border-color:var(--violet); background:var(--violet-dim); transform:translateY(-2px); }
-  @keyframes rise{ to{ opacity:1; transform:translateY(0); } }
-
-  /* ---------- stack marquee ---------- */
-  .stack-strip{
-    border-bottom:1px solid var(--line); background:var(--bg-soft);
-    padding:18px 0; overflow:hidden; white-space:nowrap;
-  }
-  .stack-track{ display:inline-flex; gap:46px; animation:scroll-x 32s linear infinite; padding-right:46px;}
-  .stack-track span{
-    font-family:var(--font-mono); font-size:13px; color:var(--muted);
-    display:inline-flex; align-items:center; gap:10px;
-  }
-  .stack-track span::before{ content:'▸'; color:var(--violet); }
-  @keyframes scroll-x{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
-
-  /* ---------- work section ---------- */
-  .section{ padding:100px clamp(20px,5vw,56px); max-width:1180px; margin:0 auto; }
-  .section-head{ margin-bottom:56px; max-width:560px; }
-  .section-label{ font-family:var(--font-mono); font-size:12px; color:var(--violet); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; }
-  .section-title{ font-family:var(--font-display); font-weight:700; font-size:clamp(26px,3.4vw,38px); letter-spacing:-0.02em; margin-bottom:14px; }
-  .section-desc{ color:var(--muted); font-size:15px; line-height:1.7; }
-
-  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; position:relative; }
-  .grid-line{
-    position:absolute; top:120px; left:8%; right:8%; height:1px;
-    background:repeating-linear-gradient(to right, var(--line) 0 8px, transparent 8px 16px);
-    z-index:0;
-  }
-  @media (max-width:900px){ .grid{grid-template-columns:1fr;} .grid-line{display:none;} }
-
-  .card{
-    position:relative; z-index:1; border-radius:18px; overflow:hidden;
-    background:var(--panel); border:1px solid var(--line);
-    text-decoration:none; color:inherit; display:flex; flex-direction:column;
-    transform-style:preserve-3d; will-change:transform;
-    transition:transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
-    opacity:0; transform:translateY(24px);
-  }
-  .card.in-view{ animation:card-rise 0.6s ease forwards; }
-  @keyframes card-rise{ to{ opacity:1; transform:translateY(0); } }
-  .card:hover{ border-color:rgba(242,163,64,0.35); box-shadow:0 30px 60px -20px rgba(0,0,0,0.6); }
-  .card-thumb{ aspect-ratio:16/10; overflow:hidden; background:#0a0c10; position:relative; }
-  .card-thumb img{ width:100%; height:100%; object-fit:cover; object-position:top; transform:translateZ(0) scale(1.01); transition:transform 0.5s ease; }
-  .card:hover .card-thumb img{ transform:scale(1.06); }
-  .card-thumb::after{
-    content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(12,14,19,0.55), transparent 45%);
-  }
-  .card-body{ padding:22px 24px 26px; display:flex; flex-direction:column; gap:8px; flex:1; transform:translateZ(30px); }
-  .card-tag{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.07em; text-transform:uppercase; color:var(--amber); }
-  .card-name{ font-family:var(--font-display); font-size:19px; font-weight:700; letter-spacing:-0.01em; }
-  .card-desc{ font-size:13.5px; color:var(--muted); line-height:1.6; }
-  .card-cta{
-    margin-top:12px; font-family:var(--font-mono); font-size:12.5px; display:inline-flex; align-items:center; gap:6px;
-    color:var(--ink); width:fit-content; border-bottom:1px solid var(--line); padding-bottom:2px;
-    transition:border-color 0.2s, color 0.2s, gap 0.2s;
-  }
-  .card:hover .card-cta{ color:var(--amber); border-color:var(--amber); gap:9px; }
-  .card-cta svg{ width:12px; height:12px; }
-
-  /* ---------- contact ---------- */
-  .contact{ background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .contact-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:start; }
-  @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; gap:36px; } }
-  .contact-info .section-desc{ margin-bottom:26px; }
-  .contact-meta{ display:flex; flex-direction:column; gap:14px; }
-  .contact-meta-row{ display:flex; align-items:center; gap:12px; font-size:14px; color:var(--ink); }
-  .contact-meta-row svg{ width:16px; height:16px; color:var(--amber); flex-shrink:0; }
-  .contact-meta-row span{ color:var(--muted); }
-
-  .contact-form{
-    background:var(--panel); border:1px solid var(--line); border-radius:18px;
-    padding:32px clamp(20px,3vw,40px);
-  }
-  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  @media (max-width:520px){ .form-row{ grid-template-columns:1fr; } }
-  .field{ margin-bottom:18px; display:flex; flex-direction:column; gap:8px; }
-  .field label{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); }
-  .field input, .field textarea{
-    background:var(--bg); border:1px solid var(--line); border-radius:9px; color:var(--ink);
-    font-family:var(--font-body); font-size:14px; padding:12px 14px; outline:none;
-    transition:border-color 0.2s, box-shadow 0.2s;
-  }
-  .field textarea{ resize:vertical; min-height:110px; }
-  .field input:focus, .field textarea:focus{ border-color:var(--amber); box-shadow:0 0 0 3px var(--amber-dim); }
-  .field input:invalid:not(:placeholder-shown), .field textarea:invalid:not(:placeholder-shown){ border-color:#e5675f; }
-  .form-submit{
-    font-family:var(--font-mono); font-size:13px; padding:13px 24px; border-radius:9px; border:none;
-    background:var(--amber); color:#0c0e13; font-weight:500; cursor:pointer; width:100%;
-    display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    transition:transform 0.2s, box-shadow 0.2s;
-  }
-  .form-submit:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(242,163,64,0.25); }
-  .form-note{ font-size:12px; color:var(--muted); margin-top:12px; text-align:center; min-height:16px; }
-
-  /* ---------- footer ---------- */
-  footer{
-    border-top:1px solid var(--line); background:var(--bg-soft);
-    padding:40px clamp(20px,5vw,56px); display:flex; align-items:center; justify-content:space-between;
-    flex-wrap:wrap; gap:16px; font-size:13px; color:var(--muted);
-    padding-bottom:max(40px, env(safe-area-inset-bottom));
-    padding-left:max(clamp(20px,5vw,56px), env(safe-area-inset-left));
-    padding-right:max(clamp(20px,5vw,56px), env(safe-area-inset-right));
-  }
-  .footer-admin{
-    font-family:var(--font-mono); font-size:11px; color:rgba(139,144,163,0.55); text-decoration:none;
-    border-bottom:1px dashed rgba(139,144,163,0.35); padding-bottom:1px;
-    display:inline-flex; align-items:center; gap:5px; transition:color 0.2s, border-color 0.2s;
-  }
-  .footer-admin svg{ width:11px; height:11px; }
-  .footer-admin:hover{ color:var(--violet); border-color:var(--violet); }
-  footer a{ text-decoration:none; color:var(--ink); border-bottom:1px solid var(--line); transition:border-color 0.2s, color 0.2s; }
-  footer a:hover{ color:var(--amber); border-color:var(--amber); }
-  .footer-mono{ font-family:var(--font-mono); font-size:12px; }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0f">
+  <meta name="description" content="Ehsan Mohajer — full-stack software developer and founder of Sani Studio in Finland.">
+  <title>Ehsan Mohajer — Full-stack developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portrait.css">
+  <link rel="stylesheet" href="localization.css">
+  <link rel="stylesheet" href="language-selector.css">
 </head>
 <body>
-
-<nav>
-  <div class="brand"><span class="brand-mark">EM</span> <span class="brand-text">Ehsan Mohajer</span></div>
-  <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#stack">Stack</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a class="nav-cta" href="#contact">Get in touch</a>
-</nav>
-
-<section class="hero">
-  <canvas id="net"></canvas>
-  <div class="hero-inner">
-    <p class="eyebrow">Full-stack engineer · AI systems</p>
-    <h1 class="headline">I wire <span class="accent">frontend</span>, <span class="accent2">backend</span> and AI into one working system.</h1>
-    <p class="hero-sub">Software engineer building web products, automation pipelines and AI agents — from database to deploy. Based in Finland, working with teams everywhere.</p>
-    <div class="hero-actions">
-      <a class="btn btn-solid" href="#work">View systems ↓</a>
-      <a class="btn btn-ghost" href="#contact">Get in touch</a>
-    </div>
-  </div>
-</section>
-
-<div class="stack-strip" id="stack">
-  <div class="stack-track" id="stackTrack">
-    <span>Next.js</span><span>React</span><span>Node.js</span><span>Python</span><span>Supabase</span>
-    <span>PostgreSQL</span><span>OpenAI</span><span>n8n</span><span>Vercel</span><span>Docker</span>
-    <span>Sanity CMS</span><span>Stripe</span><span>Figma</span>
-  </div>
-</div>
-
-<section class="section" id="work">
-  <div class="section-head">
-    <p class="section-label">Deployed systems</p>
-    <h2 class="section-title">Three products, three purposes</h2>
-    <p class="section-desc">Each one is live, in production, and built end to end — UI, logic and infrastructure.</p>
-  </div>
-
-  <div class="grid">
-    <div class="grid-line"></div>
-
-    <a class="card" href="https://project-tracker-sani-studio.vercel.app/" target="_blank" rel="noopener">
-      <div class="card-thumb"><img src="tracker.png" alt="Project Tracker dashboard screenshot" loading="lazy"></div>
-      <div class="card-body">
-        <span class="card-tag">Productivity</span>
-        <p class="card-name">Project Tracker</p>
-        <p class="card-desc">A clean dashboard for tracking tasks, milestones and progress across projects.</p>
-        <span class="card-cta">Open project <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 L12 2 M5 2 h7 v7"/></svg></span>
-      </div>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ehsan Mohajer home">
+      <span class="brand-mark">EM</span><span>Ehsan Mohajer</span>
     </a>
+    <nav aria-label="Main navigation">
+      <a href="#choose">Explore</a>
+      <a href="https://sanistudio.vercel.app/" target="_blank" rel="noopener">Studio</a>
+      <a href="https://saniportfolio.vercel.app/" target="_blank" rel="noopener">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="header-cta" href="https://sanistudio.vercel.app/" target="_blank" rel="noopener">Start a project <span>↗</span></a>
+    <label class="language-switcher">
+      <span aria-hidden="true">◎</span>
+      <span class="sr-only">Choose language</span>
+      <select id="language-select" aria-label="Choose language">
+        <option value="en">EN</option>
+        <option value="fi">FI</option>
+        <option value="fa">FA</option>
+      </select>
+    </label>
+  </header>
 
-    <a class="card" href="https://saniportfolio.vercel.app/contact" target="_blank" rel="noopener">
-      <div class="card-thumb"><img src="studio.png" alt="Sani Studio homepage screenshot" loading="lazy"></div>
-      <div class="card-body">
-        <span class="card-tag">Studio</span>
-        <p class="card-name">Sani Studio</p>
-        <p class="card-desc">Web design and AI automation studio — client work, packages and case studies.</p>
-        <span class="card-cta">Open project <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 L12 2 M5 2 h7 v7"/></svg></span>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-portrait reveal">
+        <div class="portrait-halo" aria-hidden="true"></div>
+        <img src="assets/ehsan-mohajer.png" alt="Ehsan Mohajer, full-stack software developer">
       </div>
-    </a>
-
-    <a class="card" href="https://sani-portfolio-ten.vercel.app/" target="_blank" rel="noopener">
-      <div class="card-thumb"><img src="portfolio.png" alt="Portfolio card screenshot" loading="lazy"></div>
-      <div class="card-body">
-        <span class="card-tag">Portfolio</span>
-        <p class="card-name">Portfolio Card</p>
-        <p class="card-desc">Personal intro, contact links and a quick overview of who I am and what I do.</p>
-        <span class="card-cta">Open project <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 L12 2 M5 2 h7 v7"/></svg></span>
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="status-dot"></span> Based in Finland · Available worldwide</p>
+        <h1 id="hero-title">I build digital<br><em>things that work.</em></h1>
+        <p class="hero-text">Full-stack developer crafting thoughtful products, intelligent tools and fast, polished web experiences.</p>
+        <a class="scroll-link" href="#choose"><span>Choose your path</span><span class="scroll-line"></span></a>
       </div>
-    </a>
-  </div>
-</section>
+      <div class="hero-meta reveal">
+        <span>Full-stack development</span><span>AI & automation</span><span>Digital products</span>
+      </div>
+    </section>
 
-<section class="section contact" id="contact">
-  <div class="contact-grid">
-    <div class="contact-info">
-      <p class="section-label">Get in touch</p>
-      <h2 class="section-title">Let's build something</h2>
-      <p class="section-desc">Have a project, an idea, or a system that needs wiring together? Send a message below — it opens in your email client, ready to send.</p>
-      <div class="contact-meta">
-        <div class="contact-meta-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          <span>Replies within 1–2 business days</span>
+    <section class="chooser" id="choose" aria-labelledby="choose-title">
+      <div class="section-intro reveal">
+        <p class="kicker">01 / WHERE TO?</p>
+        <h2 id="choose-title">Two sides of my work.<br><span>One place to begin.</span></h2>
+        <p>Whether you need a digital partner or want to see what I’ve built, you’re in the right place.</p>
+      </div>
+
+      <div class="path-grid">
+        <a class="path-card studio-card tilt-card reveal" href="https://sanistudio.vercel.app/" target="_blank" rel="noopener">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-top"><span>FOR CLIENTS</span><span class="card-number">01</span></div>
+          <div class="screen-wrap"><img src="assets/sani.studio.png" alt="Sani Studio website preview"></div>
+          <div class="card-content">
+            <p class="card-label">SANI STUDIO</p>
+            <h3>Let’s build something<br>that moves your business.</h3>
+            <p>Web design, full-stack development, AI solutions and automation — from first idea to launch.</p>
+            <span class="card-action">Visit the studio <i>↗</i></span>
+          </div>
+        </a>
+
+        <a class="path-card portfolio-card tilt-card reveal" href="https://saniportfolio.vercel.app/" target="_blank" rel="noopener">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-top"><span>ABOUT MY WORK</span><span class="card-number">02</span></div>
+          <div class="screen-wrap"><img src="assets/sani.portfolio.png" alt="Ehsan Mohajer portfolio preview"></div>
+          <div class="card-content">
+            <p class="card-label">PORTFOLIO</p>
+            <h3>See the person<br>behind the projects.</h3>
+            <p>Selected work, technical experience, career story and everything you need to know about me.</p>
+            <span class="card-action">View my portfolio <i>↗</i></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="approach reveal" aria-label="Working approach">
+      <p class="kicker">02 / THE APPROACH</p>
+      <div class="approach-line"><span>Design-minded.</span><span>Engineering-led.</span><span>Business-aware.</span></div>
+      <div class="principles">
+        <p><b>01</b> Clear communication</p><p><b>02</b> Purposeful design</p><p><b>03</b> Reliable delivery</p>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-heading reveal">
+        <p class="kicker">03 / GET IN TOUCH</p>
+        <h2 id="contact-title">Have a project in mind?<br><span>Let’s talk.</span></h2>
+        <p>Send a short callback request and I’ll get back to you as soon as possible.</p>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-details reveal">
+          <p class="contact-label">CONTACT DETAILS</p>
+          <a href="mailto:ehsanmohajer.fi@gmail.com"><small>Email</small><span>ehsanmohajer.fi@gmail.com</span></a>
+          <div><small>Location</small><span>Jyväskylä, Finland</span></div>
+          <div><small>Availability</small><span>Finland · Remote worldwide</span></div>
         </div>
-        <div class="contact-meta-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          <span>Jyväskylä, Finland — open to remote work</span>
-        </div>
+        <form class="callback-form reveal" id="callback-form">
+          <div class="form-field"><label for="customer-name">Your name</label><input id="customer-name" name="name" autocomplete="name" required></div>
+          <div class="form-field"><label for="customer-email">Email or phone</label><input id="customer-email" name="contact" autocomplete="email" required></div>
+          <div class="form-field full"><label for="customer-message">How can I help?</label><textarea id="customer-message" name="message" rows="4" required></textarea></div>
+          <button type="submit">Request a callback <span>↗</span></button>
+          <p class="form-note">This opens your email app with the request ready to send.</p>
+        </form>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <form class="contact-form" id="contactForm">
-      <div class="form-row">
-        <div class="field">
-          <label for="cf-name">Name</label>
-          <input id="cf-name" name="name" type="text" placeholder="Your name" required>
-        </div>
-        <div class="field">
-          <label for="cf-email">Email</label>
-          <input id="cf-email" name="email" type="email" placeholder="you@example.com" required>
-        </div>
-      </div>
-      <div class="field">
-        <label for="cf-subject">Subject</label>
-        <input id="cf-subject" name="subject" type="text" placeholder="What's this about?" required>
-      </div>
-      <div class="field">
-        <label for="cf-message">Message</label>
-        <textarea id="cf-message" name="message" placeholder="Tell me a bit about your project…" required></textarea>
-      </div>
-      <button class="form-submit" type="submit">Send message
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/></svg>
-      </button>
-      <p class="form-note" id="formNote"></p>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <span>© 2025 Ehsan Mohajer — built and deployed by hand.</span>
-  <a class="footer-admin" href="https://project-tracker-sani-studio.vercel.app/" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-    Admin
-  </a>
-</footer>
-
-<script>
-  // ---------- 3D tilt on project cards ----------
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('.card').forEach(card => {
-    if (reduceMotion) return;
-    card.style.perspective = '900px';
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-4px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(900px) rotateY(0) rotateX(0) translateY(0)';
-    });
-  });
-
-  // ---------- reveal cards on scroll ----------
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); } });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.card').forEach((c, i) => { c.style.animationDelay = (i * 0.08) + 's'; io.observe(c); });
-
-  // ---------- contact form (opens a pre-filled email) ----------
-  const CONTACT_EMAIL = 'hello@ehsanmohajer.fi'; // TODO: replace with your real inbox
-  const contactForm = document.getElementById('contactForm');
-  const formNote = document.getElementById('formNote');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(contactForm);
-      const name = data.get('name').trim();
-      const email = data.get('email').trim();
-      const subject = data.get('subject').trim();
-      const message = data.get('message').trim();
-      const body = `${message}\n\n—\n${name} (${email})`;
-      const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
-      formNote.textContent = 'Opening your email client…';
-    });
-  }
-
-  // ---------- animated node network (hero background) ----------
-  const canvas = document.getElementById('net');
-  const ctx = canvas.getContext('2d');
-  let w, h, nodes = [];
-  const LABELS = ['UI', 'API', 'DB', 'AI', 'JOB', 'ENV'];
-  const COLORS = ['#f2a340', '#7c6cf6'];
-
-  function resize() {
-    w = canvas.width = canvas.offsetWidth * devicePixelRatio;
-    h = canvas.height = canvas.offsetHeight * devicePixelRatio;
-  }
-  function initNodes() {
-    const count = reduceMotion ? 0 : (w < 700 * devicePixelRatio ? 9 : 16);
-    nodes = Array.from({ length: count }, (_, i) => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.25 * devicePixelRatio,
-      vy: (Math.random() - 0.5) * 0.25 * devicePixelRatio,
-      r: (Math.random() * 1.6 + 1.4) * devicePixelRatio,
-      c: COLORS[i % 2],
-      label: i < LABELS.length ? LABELS[i] : null
-    }));
-  }
-  function step() {
-    ctx.clearRect(0, 0, w, h);
-    nodes.forEach(n => {
-      n.x += n.vx; n.y += n.vy;
-      if (n.x < 0 || n.x > w) n.vx *= -1;
-      if (n.y < 0 || n.y > h) n.vy *= -1;
-    });
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const a = nodes[i], b = nodes[j];
-        const d = Math.hypot(a.x - b.x, a.y - b.y);
-        const max = 220 * devicePixelRatio;
-        if (d < max) {
-          ctx.strokeStyle = `rgba(140,150,175,${0.14 * (1 - d / max)})`;
-          ctx.lineWidth = devicePixelRatio;
-          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-        }
-      }
-    }
-    nodes.forEach(n => {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = n.c;
-      ctx.globalAlpha = 0.9;
-      ctx.fill();
-      ctx.globalAlpha = 1;
-      if (n.label) {
-        ctx.font = `${11 * devicePixelRatio}px 'JetBrains Mono', monospace`;
-        ctx.fillStyle = 'rgba(238,240,244,0.35)';
-        ctx.fillText(n.label, n.x + 8 * devicePixelRatio, n.y - 8 * devicePixelRatio);
-      }
-    });
-    if (!reduceMotion) requestAnimationFrame(step);
-  }
-  resize(); initNodes(); step();
-  window.addEventListener('resize', () => { resize(); initNodes(); });
-</script>
+  <footer>
+    <div><span class="footer-mark">EM</span><p>Building useful things<br>from Jyväskylä, Finland.</p></div>
+    <div class="footer-links"><a href="https://sanistudio.vercel.app/" target="_blank" rel="noopener">Studio ↗</a><a href="https://saniportfolio.vercel.app/" target="_blank" rel="noopener">Portfolio ↗</a></div>
+    <p class="copyright">© <span id="year"></span> Ehsan Mohajer</p>
+    <a class="admin-link" href="https://project-tracker-studio.vercel.app/" target="_blank" rel="noopener nofollow" aria-label="Administrator access" title="Administrator access">⌘</a>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
