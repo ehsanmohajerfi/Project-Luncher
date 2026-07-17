@@ -1,0 +1,38 @@
+.hero-portrait {
+  position: absolute;
+  z-index: 1;
+  width: min(38vw, 560px);
+  right: 4vw;
+  top: 50%;
+  transform: translateY(-47%);
+  filter: drop-shadow(0 35px 70px rgba(0, 0, 0, .5));
+}
+
+.hero-portrait.visible { transform: translateY(-50%); }
+.hero-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  clip-path: circle(40.7% at 49.1% 49.2%);
+}
+.portrait-halo {
+  position: absolute;
+  inset: 10% 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 255, 74, .12), transparent 67%);
+  filter: blur(25px);
+  animation: portraitPulse 5s ease-in-out infinite;
+}
+
+@keyframes portraitPulse { 50% { opacity: .55; transform: scale(1.04); } }
+
+@media (max-width: 800px) {
+  .hero { padding: 115px 22px 76px; min-height: 940px; }
+  .hero-copy { padding-top: 390px; }
+  .hero-portrait { width: min(78vw, 430px); right: -1vw; top: 105px; transform: none; }
+  .hero-portrait.visible { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) { .portrait-halo { animation: none; } }
