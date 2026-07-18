@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080b0f">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Sani Portal">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="description" content="Ehsan Mohajer — full-stack software developer and founder of Sani Studio in Finland.">
   <title>Sani Portal — Ehsan Mohajer</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,6 +29,7 @@
   <link rel="stylesheet" href="expectations.css">
   <link rel="stylesheet" href="portal-expansion.css">
   <link rel="stylesheet" href="hero-cta-glow.css">
+  <link rel="stylesheet" href="pwa.css">
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -188,6 +196,12 @@
     </div>
     <div class="footer-bottom"><p class="copyright">© <span id="year"></span> Ehsan Mohajer</p><a class="admin-link" href="https://project-tracker-studio.vercel.app/" target="_blank" rel="noopener nofollow" aria-label="Administrator access" title="Administrator access">⌘</a></div>
   </footer>
+  <section class="pwa-offer" id="pwa-offer" hidden aria-labelledby="pwa-title">
+    <div class="pwa-icon" aria-hidden="true">S</div>
+    <div><strong id="pwa-title">Install Sani Portal</strong><p id="pwa-message">Keep the portal on your phone and open it like an app.</p></div>
+    <button id="pwa-install" type="button">Install</button>
+    <button class="pwa-dismiss" id="pwa-dismiss" type="button" aria-label="Dismiss install suggestion">×</button>
+  </section>
   <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
 
   <aside class="site-assistant" id="site-assistant" aria-label="Website assistant">
@@ -204,5 +218,6 @@
   </aside>
   <script src="script.js"></script>
   <script src="assistant.js"></script>
+  <script src="pwa.js"></script>
 </body>
 </html>
