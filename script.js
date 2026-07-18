@@ -99,14 +99,15 @@ function setLanguage(language) {
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
   Object.entries(translations[lang]).forEach(([selector, content]) => {
-    const element = document.querySelector(selector);
-    if (element) element.innerHTML = content;
+    document.querySelectorAll(selector).forEach((element) => { element.innerHTML = content; });
   });
   document.querySelectorAll('.language-select').forEach((languageSelect) => { languageSelect.value = lang; });
   localStorage.setItem('preferredLanguage', lang);
 }
 
-document.querySelectorAll('.language-select').forEach((languageSelect) => languageSelect.addEventListener('change', (event) => setLanguage(event.target.value)));
+document.addEventListener('change', (event) => {
+  if (event.target.matches('.language-select')) setLanguage(event.target.value);
+});
 setLanguage(localStorage.getItem('preferredLanguage') || (navigator.language.startsWith('fa') ? 'fa' : navigator.language.startsWith('fi') ? 'fi' : 'en'));
 
 document.getElementById('callback-form').addEventListener('submit', (event) => {
