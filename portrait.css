@@ -1,8 +1,8 @@
 .hero-portrait {
   position: absolute;
   z-index: 1;
-  width: min(38vw, 560px);
-  right: 4vw;
+  width: min(69vw, 1120px);
+  right: -5vw;
   top: 50%;
   transform: translateY(-47%);
   filter: drop-shadow(0 35px 70px rgba(0, 0, 0, .5));
@@ -15,7 +15,10 @@
   height: auto;
   position: relative;
   z-index: 1;
-  clip-path: circle(40.7% at 49.1% 49.2%);
+  clip-path: none;
+  border-radius: 18px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.12) 13%, #000 37%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.12) 13%, #000 37%);
 }
 .portrait-halo {
   position: absolute;
@@ -31,7 +34,8 @@
 @media (max-width: 800px) {
   .hero { padding: 115px 22px 76px; min-height: 940px; }
   .hero-copy { padding-top: 390px; }
-  .hero-portrait { width: min(78vw, 430px); right: -1vw; top: 105px; transform: none; }
+  .hero-portrait { width: 125vw; right: -54vw; top: 105px; transform: none; }
+  .hero-portrait img { min-height: 380px; object-fit: cover; object-position: 66% center; -webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent); }
   .hero-portrait.visible { transform: none; }
 }
 

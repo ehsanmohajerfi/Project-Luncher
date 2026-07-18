@@ -1,6 +1,7 @@
 .brand { overflow: hidden; }
 .sani-logo { display: block; width: 155px; height: 46px; object-fit: cover; object-position: center; }
 .sani-logo-light { display: none; }
+.sani-logo-dark { mix-blend-mode: screen; }
 html[data-theme="light"] .sani-logo-dark { display: none; }
 html[data-theme="light"] .sani-logo-light { display: block; }
 
