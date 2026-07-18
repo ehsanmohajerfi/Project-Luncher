@@ -1,0 +1,53 @@
+.theme-toggle {
+  width: 39px;
+  height: 39px;
+  flex: 0 0 39px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform .25s, background .25s, border-color .25s;
+}
+
+.theme-toggle:hover { transform: rotate(16deg); border-color: #777; }
+.theme-icon { font-size: 17px; line-height: 1; }
+
+html[data-theme="light"] {
+  --bg: #f1f0ea;
+  --surface: #faf9f4;
+  --line: rgba(16, 20, 20, .14);
+  --text: #111515;
+  --muted: #606666;
+  --lime: #527a00;
+  --blue: #315d9f;
+}
+
+html[data-theme="light"] body { background: var(--bg); color: var(--text); }
+html[data-theme="light"] .noise { opacity: .018; }
+html[data-theme="light"] .hero::before {
+  background: linear-gradient(90deg, rgba(241,240,234,.2), rgba(241,240,234,.86)), repeating-linear-gradient(90deg, transparent 0, transparent calc(25% - 1px), rgba(0,0,0,.035) 25%);
+}
+html[data-theme="light"] .hero h1 em { -webkit-text-stroke-color: #747978; }
+html[data-theme="light"] .hero-text,
+html[data-theme="light"] .section-intro > p:last-child,
+html[data-theme="light"] .contact-heading > p:last-child,
+html[data-theme="light"] .card-content > p:not(.card-label) { color: #5f6665; }
+html[data-theme="light"] .path-card { background: #fbfaf6; box-shadow: 0 20px 55px rgba(28,34,32,.06); }
+html[data-theme="light"] .portfolio-card { background: #edf2f5; }
+html[data-theme="light"] .screen-wrap { border-color: rgba(0,0,0,.14); }
+html[data-theme="light"] .approach-line span:nth-child(2) { color: #747978; }
+html[data-theme="light"] .contact-layout { background: #faf9f4; }
+html[data-theme="light"] .contact-details span { color: #252a29; }
+html[data-theme="light"] .form-field input,
+html[data-theme="light"] .form-field textarea { color: #111515; border-color: #aeb3af; }
+html[data-theme="light"] .language-switcher select option { background: #faf9f4; color: #111515; }
+html[data-theme="light"] .callback-form button { background: #172015; color: #fff; }
+html[data-theme="light"] .admin-link { color: #a9ada9; }
+
+@media (max-width: 800px) {
+  .theme-toggle { width: 35px; height: 35px; flex-basis: 35px; }
+}
