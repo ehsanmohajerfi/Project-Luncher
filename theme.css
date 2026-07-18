@@ -17,8 +17,8 @@
 .theme-icon { font-size: 17px; line-height: 1; }
 
 html[data-theme="light"] {
-  --bg: #a9ed68;
-  --surface: #c5f394;
+  --bg: #ffffff;
+  --surface: #cde0ba82;
   --line: rgba(16, 20, 20, .14);
   --text: #111515;
   --muted: #606666;
@@ -27,9 +27,11 @@ html[data-theme="light"] {
 }
 
 html[data-theme="light"] body { background: var(--bg); color: var(--text); }
+.site-header nav { color: #f3f1eb; }
+html[data-theme="light"] .site-header nav { color: #111515; }
 html[data-theme="light"] .noise { opacity: .018; }
 html[data-theme="light"] .hero::before {
-  background: linear-gradient(90deg, rgba(169,237,104,.08), rgba(169,237,104,.78)), repeating-linear-gradient(90deg, transparent 0, transparent calc(25% - 1px), rgba(0,0,0,.055) 25%);
+  background: linear-gradient(90deg, rgba(169,237,104,.08), rgba(248,255,241,.78)), repeating-linear-gradient(90deg, transparent 0, transparent calc(25% - 1px), rgba(0,0,0,.055) 25%);
 }
 html[data-theme="light"] .hero h1 em { -webkit-text-stroke-color: #747978; }
 html[data-theme="light"] .hero-text,
@@ -55,4 +57,56 @@ html[data-theme="light"] .tourism-visual { background:radial-gradient(circle at 
 
 @media (max-width: 800px) {
   .theme-toggle { width: 35px; height: 35px; flex-basis: 35px; }
+}
+
+/* High-contrast supporting text in light mode */
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .kicker,
+html[data-theme="light"] .hero-meta,
+html[data-theme="light"] .section-intro > p:last-child,
+html[data-theme="light"] .work-index,
+html[data-theme="light"] .principles p,
+html[data-theme="light"] .contact-heading > p:last-child,
+html[data-theme="light"] .form-field label {
+  color: #0b0e0d;
+  font-weight: 600;
+}
+
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .kicker {
+  font-size: 13px;
+}
+
+html[data-theme="light"] .hero-meta {
+  font-size: 13px;
+}
+
+html[data-theme="light"] .section-intro > p:last-child,
+html[data-theme="light"] .contact-heading > p:last-child {
+  color: #111515;
+  font-size: 16px;
+}
+
+html[data-theme="light"] .work-index {
+  font-size: 12px;
+}
+
+html[data-theme="light"] .principles p {
+  font-size: 14px;
+}
+
+html[data-theme="light"] .principles b {
+  color: #111515;
+}
+
+html[data-theme="light"] .form-field label {
+  font-size: 12px;
+}
+
+@media (max-width: 800px) {
+  html[data-theme="light"] .eyebrow,
+  html[data-theme="light"] .kicker { font-size: 12px; }
+  html[data-theme="light"] .section-intro > p:last-child,
+  html[data-theme="light"] .contact-heading > p:last-child { font-size: 15px; }
+  html[data-theme="light"] .work-index { font-size: 11px; }
 }

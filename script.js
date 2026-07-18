@@ -1,19 +1,21 @@
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('year').textContent = new Date().getFullYear();
 
-const themeToggle = document.getElementById('theme-toggle');
+const themeToggles = document.querySelectorAll('.theme-toggle');
 const preferredTheme = localStorage.getItem('preferredTheme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
 
 function setTheme(theme) {
   const selectedTheme = theme === 'light' ? 'light' : 'dark';
   document.documentElement.dataset.theme = selectedTheme;
-  themeToggle.querySelector('.theme-icon').textContent = selectedTheme === 'dark' ? '☼' : '☾';
-  themeToggle.setAttribute('aria-label', selectedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  themeToggles.forEach((themeToggle) => {
+    themeToggle.querySelector('.theme-icon').textContent = selectedTheme === 'dark' ? '☼' : '☾';
+    themeToggle.setAttribute('aria-label', selectedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  });
   localStorage.setItem('preferredTheme', selectedTheme);
 }
 
 setTheme(preferredTheme);
-themeToggle.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
+themeToggles.forEach((themeToggle) => themeToggle.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark')));
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -100,12 +102,11 @@ function setLanguage(language) {
     const element = document.querySelector(selector);
     if (element) element.innerHTML = content;
   });
-  const languageSelect = document.getElementById('language-select');
-  if (languageSelect) languageSelect.value = lang;
+  document.querySelectorAll('.language-select').forEach((languageSelect) => { languageSelect.value = lang; });
   localStorage.setItem('preferredLanguage', lang);
 }
 
-document.getElementById('language-select').addEventListener('change', (event) => setLanguage(event.target.value));
+document.querySelectorAll('.language-select').forEach((languageSelect) => languageSelect.addEventListener('change', (event) => setLanguage(event.target.value)));
 setLanguage(localStorage.getItem('preferredLanguage') || (navigator.language.startsWith('fa') ? 'fa' : navigator.language.startsWith('fi') ? 'fi' : 'en'));
 
 document.getElementById('callback-form').addEventListener('submit', (event) => {

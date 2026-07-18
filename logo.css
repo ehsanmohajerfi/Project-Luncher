@@ -1,0 +1,15 @@
+.brand { overflow: hidden; }
+.sani-logo { display: block; width: 155px; height: 46px; object-fit: cover; object-position: center; }
+.sani-logo-light { display: none; }
+html[data-theme="light"] .sani-logo-dark { display: none; }
+html[data-theme="light"] .sani-logo-light { display: block; }
+
+.footer-brand { display: flex; align-items: center !important; gap: 25px !important; }
+.footer-brand > a { display: block; overflow: hidden; }
+.footer-brand .sani-logo { width: 190px; height: 57px; }
+
+@media (max-width: 800px) {
+  .sani-logo { width: 112px; height: 34px; }
+  .footer-brand { align-items: flex-start !important; flex-direction: column; }
+  .footer-brand .sani-logo { width: 160px; height: 48px; }
+}
