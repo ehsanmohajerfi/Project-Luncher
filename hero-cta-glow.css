@@ -1,0 +1,17 @@
+.hero-start-now {
+  transition: box-shadow .25s, border-color .25s, background-color .25s, color .25s;
+  box-shadow: 0 0 18px rgba(201,255,74,.16), 0 18px 45px rgba(0,0,0,.25);
+}
+
+.hero-start-now.reveal.visible { transform: translateX(-50%); }
+
+.hero-start-now:hover {
+  transform: translateX(-50%);
+  border-color: var(--lime);
+  box-shadow: 0 0 14px rgba(201,255,74,.8), 0 0 38px rgba(201,255,74,.42), 0 18px 45px rgba(0,0,0,.25);
+}
+
+.hero-start-now:hover > span { transform: none; }
+html[data-theme="light"] .hero-start-now:hover {
+  box-shadow: 0 0 14px rgba(36,70,0,.48), 0 0 35px rgba(163,209,114,.75);
+}

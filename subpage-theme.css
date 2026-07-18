@@ -1,0 +1,44 @@
+.contact-header {
+  position: relative;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.content-page,
+.contact-page,
+.content-page main,
+.contact-page main {
+  background: var(--bg);
+}
+
+.subpage-title {
+  display: inline-block;
+  font-size: clamp(26px, 3vw, 42px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -.04em;
+  color: var(--text);
+  text-shadow: 0 0 20px color-mix(in srgb, var(--lime) 48%, transparent);
+}
+
+html[data-theme="light"] .subpage-title {
+  color: #111515;
+  text-shadow: 0 0 18px rgba(163,209,114,.72);
+}
+
+.contact-header nav,
+.page-header nav { margin-left: auto; }
+
+.page-header nav a[aria-current="page"],
+.contact-header nav a[aria-current="page"] { color: var(--lime); }
+
+html[data-theme="light"] .page-header nav a[aria-current="page"],
+html[data-theme="light"] .contact-header nav a[aria-current="page"] { color: #244600; }
+
+html[data-theme="dark"] .page-header,
+html[data-theme="dark"] .contact-header { background: var(--bg); color: var(--text); }
+
+html[data-theme="dark"] .page-header nav,
+html[data-theme="dark"] .contact-header nav { color: #f3f1eb; }
+
+html[data-theme="dark"] .subpage-top { background: var(--lime); color: #10150f; }

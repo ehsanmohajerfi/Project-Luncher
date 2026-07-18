@@ -45,7 +45,7 @@ if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
 
 const translations = {
   en: {
-    'nav a:nth-child(1)': 'Explore', 'nav a:nth-child(2)': 'Studio', 'nav a:nth-child(3)': 'Portfolio', 'nav a:nth-child(4)': 'Contact',
+    'nav a:nth-child(1)': 'Explore', 'nav a:nth-child(2)': 'Studio', 'nav a:nth-child(3)': 'Portfolio', 'nav a:nth-child(4)': 'Blog', 'nav a:nth-child(5)': 'About', 'nav a:nth-child(6)': 'Contact',
     '.header-cta': 'Start a project <span>↗</span>', '.eyebrow': '<span class="welcome-copy">Welcome to Sani Portal</span><span class="eyebrow-divider">/</span><span class="status-dot"></span> Based in Finland · Available worldwide',
     '.hero h1': 'I build digital<br><em>things that work.</em>', '.hero-text': 'Full-stack developer crafting thoughtful products, intelligent tools and fast, polished web experiences.',
     '.scroll-link span:first-child': 'Choose your path', '.hero-meta': '<span>Full-stack development</span><span>AI & automation</span><span>Digital products</span>',
@@ -62,7 +62,7 @@ const translations = {
     'footer>div:first-child p': 'Building useful things<br>from Jyväskylä, Finland.', '.footer-links a:first-child': 'Studio ↗', '.footer-links a:last-child': 'Portfolio ↗'
   },
   fi: {
-    'nav a:nth-child(1)': 'Tutustu', 'nav a:nth-child(2)': 'Studio', 'nav a:nth-child(3)': 'Portfolio', 'nav a:nth-child(4)': 'Yhteystiedot',
+    'nav a:nth-child(1)': 'Tutustu', 'nav a:nth-child(2)': 'Studio', 'nav a:nth-child(3)': 'Portfolio', 'nav a:nth-child(4)': 'Blogi', 'nav a:nth-child(5)': 'Minusta', 'nav a:nth-child(6)': 'Yhteystiedot',
     '.header-cta': 'Aloita projekti <span>↗</span>', '.eyebrow': '<span class="welcome-copy">Tervetuloa Sani Portaliin</span><span class="eyebrow-divider">/</span><span class="status-dot"></span> Suomessa · Työskentelen maailmanlaajuisesti',
     '.hero h1': 'Rakennan digitaalisia<br><em>ratkaisuja, jotka toimivat.</em>', '.hero-text': 'Full-stack-kehittäjä, joka rakentaa harkittuja tuotteita, älykkäitä työkaluja ja nopeita, viimeisteltyjä verkkokokemuksia.',
     '.scroll-link span:first-child': 'Valitse polkusi', '.hero-meta': '<span>Full-stack-kehitys</span><span>Tekoäly ja automaatio</span><span>Digitaaliset tuotteet</span>',
@@ -79,7 +79,7 @@ const translations = {
     'footer>div:first-child p': 'Rakennan hyödyllisiä asioita<br>Jyväskylässä.', '.footer-links a:first-child': 'Studio ↗', '.footer-links a:last-child': 'Portfolio ↗'
   },
   fa: {
-    'nav a:nth-child(1)': 'مشاهده', 'nav a:nth-child(2)': 'استودیو', 'nav a:nth-child(3)': 'پورتفولیو', 'nav a:nth-child(4)': 'تماس',
+    'nav a:nth-child(1)': 'مشاهده', 'nav a:nth-child(2)': 'استودیو', 'nav a:nth-child(3)': 'پورتفولیو', 'nav a:nth-child(4)': 'وبلاگ', 'nav a:nth-child(5)': 'درباره من', 'nav a:nth-child(6)': 'تماس',
     '.header-cta': 'شروع پروژه <span>↗</span>', '.eyebrow': '<span class="welcome-copy">به Sani Portal خوش آمدید</span><span class="eyebrow-divider">/</span><span class="status-dot"></span> مستقر در فنلاند · همکاری در سراسر جهان',
     '.hero h1': 'محصولات دیجیتالی<br><em>می‌سازم که کار می‌کنند.</em>', '.hero-text': 'توسعه‌دهنده فول‌استک؛ سازنده محصولات هدفمند، ابزارهای هوشمند و تجربه‌های وب سریع و حرفه‌ای.',
     '.scroll-link span:first-child': 'مسیرتان را انتخاب کنید', '.hero-meta': '<span>توسعه فول‌استک</span><span>هوش مصنوعی و اتوماسیون</span><span>محصولات دیجیتال</span>',

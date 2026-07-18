@@ -1,5 +1,5 @@
 .brand { overflow: hidden; }
-.sani-logo { display: block; width: 155px; height: 46px; object-fit: cover; object-position: center; }
+.sani-logo { display: block; width: 250px; height: 84px; object-fit: cover; object-position: center; }
 .sani-logo-light { display: none; }
 .sani-logo-dark { mix-blend-mode: screen; }
 html[data-theme="light"] .sani-logo-dark { display: none; }
@@ -11,7 +11,7 @@ html[data-theme="light"] .sani-logo-light { display: block; }
 .footer-portal-copy{display:flex;flex-direction:column;gap:7px}.footer-portal-copy strong{font:600 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text)}
 
 @media (max-width: 800px) {
-  .sani-logo { width: 112px; height: 34px; }
+  .sani-logo { width: 150px; height: 50px; }
   .footer-brand { align-items: flex-start !important; flex-direction: column; }
   .footer-brand .sani-logo { width: 160px; height: 48px; }
 }
